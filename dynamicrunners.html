@@ -79,30 +79,27 @@ var query = function (sql, sheetName, callback) {
 }
 
 function CreateCanvas( i, name, course, record) {
-		                var canvasName = "#myCanvas";
-			            var is = String(i);
-                		var _cvs = document.createElement('canvas');//document.querySelector(canvasName.concat(is));
-                        _cvs.width = 760;
-                        _cvs.height = 760;
-                		var _ctx = _cvs.getContext("2d");
-                 		var _img = new Image();
-
-                		_img.src = "dy_certificate_bg.jpg";
-                		_img.onload = function(e) {
-                			_ctx.drawImage(_img, 0, 0);
-	 	        		_ctx.fillStyle = "white";
-				        _ctx.font = "40pt HY견고딕"
-	 	        		_ctx.fillText(name, 370,390);
-	 	        		_ctx.fillText(course, 370,485);
-	 	        		_ctx.fillText(record, 370,570);
+    var canvasName = "#myCanvas";
+    var is = String(i);
+    var _cvs = document.createElement('canvas');//document.querySelector(canvasName.concat(is));
+    _cvs.width = 760;
+    _cvs.height = 760;
+    var _ctx = _cvs.getContext("2d");
+    var _img = new Image();
+    _img.src = "dy_certificate_bg.jpg";
+    _img.onload = function(e) {
+        _ctx.drawImage(_img, 0, 0);
+        _ctx.fillStyle = "white";
+        _ctx.font = "40pt HY견고딕"
+        _ctx.fillText(name, 370,390);
+        _ctx.fillText(course, 370,485);
+        _ctx.fillText(record, 370,570);
                          
         var divContainer = document.getElementById("showData");
-        //divContainer.innerHTML = "";
+       //divContainer.innerHTML = "";
         divContainer.appendChild(_cvs);
-
-                        return _cvs;
-			}
-		}
+    }
+}
 
 var my_callback = function (data) {
     data = parse(data); // Call data parser helper function
@@ -154,6 +151,7 @@ var my_callback = function (data) {
 
             
             var num = i;
+            console.log(num);
             CreateCanvas(num, data[num][col[0]],data[num][col[1]],data[num][col[2]]);
             //tabCell.appendChild(_cvs);
         }
@@ -184,7 +182,7 @@ var datas = [];
 //자바스크립트 onclick
 document.getElementById("javascript_btn1").addEventListener("click", javascript_onclikc);
 function javascript_onclikc(){
-    query('SELECT * WHERE B > 0 ORDER BY B DESC', '시트1', 'my_callback');
+    query('SELECT * WHERE B > 0 ORDER BY B DESC, C ASC', '시트1', 'my_callback');
 }
 
        </script>
@@ -192,8 +190,7 @@ function javascript_onclikc(){
     
     <body id ="body">
         <p>DR 온라인 기록증</p>
-<input type="button" value="Lading record" onclick="javascript_onclikc()">
-
-<div id="showData"></div>
+        <input type="button" value="Lading record" onclick="javascript_onclikc()">
+        <div id="showData"></div>
     </body>
 </html>
