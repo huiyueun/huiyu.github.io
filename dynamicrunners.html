@@ -1,10 +1,10 @@
 <!DOCTYPE html>>
 <html>
 <head>
-    <meta property="og:title" content="Dynamic Runners 1st Marathon"/> /*제목*/ 
-    <meta property="og:url" content="https://huiyueun.github.io/dynamicrunners.html"/>  /*url*/ 
-    <meta property="og:image" content="dy_certificate_bg.jpg"/> /*이미지 */ 
-    <meta property="og:description" content="Dynamic Runners 1st Marathon"/> /*부가설명*/
+    <meta property="og:title" content="Dynamic Runners 1st Marathon"/>
+    <meta property="og:url" content="https://huiyueun.github.io/dynamicrunners.html"/>
+    <meta property="og:image" content="dy_certificate_bg.jpg"/>
+    <meta property="og:description" content="Dynamic Runners 1st Marathon"/>
 <script>
 var jsonp = function (url) {
     var script = window.document.createElement('script');
@@ -88,8 +88,9 @@ function CreateCanvas( i, name, course, record) {
 
     var _ctx = _cvs.getContext("2d");
     var _img = new Image();
-    _img.src = "dy_certificate_bg.jpg";
-    _img.onload = function(e) {
+    _img.src = "https://huiyueun.github.io/dy_certificate_bg.jpg";
+    _img.crossOrigin="*";
+        _img.onload = function(e) {
         _ctx.drawImage(_img, 0, 0);
         _ctx.fillStyle = "white";
         _ctx.font = "40pt HY견고딕"
@@ -98,8 +99,21 @@ function CreateCanvas( i, name, course, record) {
         _ctx.fillText(record, 370,570);
 
         var divContainer = document.getElementById("showData");
-        divContainer.appendChild(_cvs);
-        return _cvs;
+
+        var btn = document.createElement('Button');
+        btn.addEventListener('click', function (e) {
+            var dataURL = _cvs.toDataURL('image/png');
+            btn.href = dataURL;
+        });
+        //divContainer.appendChild(btn);
+
+        var myImage = document.createElement('img');
+        myImage.crossOrigin="*";
+        myImage.width=760;
+        myImage.height=760;
+        myImage.src = _cvs.toDataURL('image/jpg');
+      //  myImage.crossOrigin = "Anonymous";
+        divContainer.appendChild(myImage);
     }
 }
     
@@ -165,8 +179,8 @@ var my_callback = function (data) {
         var top_table = document.getElementById("top_table");
         top_table.width="30%";
 
-        var logo = document.getElementById("e3x2m6w0gh91");
-        logo.animate();
+        //var logo = document.getElementById("e3x2m6w0gh91");
+        //logo.animate();
 
     } else {
 
