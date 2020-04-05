@@ -1,10 +1,7 @@
+<!DOCTYPE html>>
 <html>
-    <head>
-        <style>
-            canvas { border: 1px solid black; }                                        
-       </style>
-        <script>
-
+<head>
+<script>
 var jsonp = function (url) {
     var script = window.document.createElement('script');
     script.async = true;
@@ -25,7 +22,7 @@ var jsonp = function (url) {
     };
     window.document.getElementsByTagName('head')[0].appendChild(script);
 };
-
+    
 var parse = function (data) {
     var column_length = data.table.cols.length;
     if (!column_length || !data.table.rows.length) {
@@ -60,7 +57,7 @@ var parse = function (data) {
     }
     return result;
 };
-
+    
 var query = function (sql, sheetName, callback) {
     //var myKey = '1R-8M7lQjmAWr7Lliku57e9FU-Kjcofu2mNiLU3pkmFs';
     var myKey = '1zrQ9ngFnY4LpkAkixyzIsX0-broVIIETbyUCEqiVZ0A';
@@ -77,13 +74,14 @@ var query = function (sql, sheetName, callback) {
     url += qs.join('&');
     return jsonp(url); // Call JSONP helper function
 }
-
+    
 function CreateCanvas( i, name, course, record) {
     var canvasName = "#myCanvas";
     var is = String(i);
     var _cvs = document.createElement('canvas');//document.querySelector(canvasName.concat(is));
     _cvs.width = 760;
     _cvs.height = 760;
+
     var _ctx = _cvs.getContext("2d");
     var _img = new Image();
     _img.src = "dy_certificate_bg.jpg";
@@ -94,16 +92,16 @@ function CreateCanvas( i, name, course, record) {
         _ctx.fillText(name, 370,390);
         _ctx.fillText(course, 370,485);
         _ctx.fillText(record, 370,570);
-                         
+
         var divContainer = document.getElementById("showData");
-       //divContainer.innerHTML = "";
         divContainer.appendChild(_cvs);
+        return _cvs;
     }
 }
-
+    
 var my_callback = function (data) {
     data = parse(data); // Call data parser helper function
-  
+    
     //AND THEN WHATEVER YOU WANT 
     for(var i = 0 ; i < datas.length; i++){
         if(JSON.stringify(datas[i]) == JSON.stringify(data)) {
@@ -151,7 +149,6 @@ var my_callback = function (data) {
 
             
             var num = i;
-            console.log(num);
             CreateCanvas(num, data[num][col[0]],data[num][col[1]],data[num][col[2]]);
             //tabCell.appendChild(_cvs);
         }
@@ -160,6 +157,12 @@ var my_callback = function (data) {
         var divContainer = document.getElementById("showData");
         divContainer.innerHTML = "";
         //divContainer.appendChild(table);
+
+        var top_table = document.getElementById("top_table");
+        top_table.width="30%";
+
+        var logo = document.getElementById("e3x2m6w0gh91");
+        logo.animate();
 
     } else {
 
@@ -176,21 +179,51 @@ var my_callback = function (data) {
     }
 
 }
-            
+                
 var datas = [];
 
 //자바스크립트 onclick
-document.getElementById("javascript_btn1").addEventListener("click", javascript_onclikc);
+document.getElementById("dr_btn").addEventListener("click", javascript_onclikc);
 function javascript_onclikc(){
-    query('SELECT * WHERE B > 0 ORDER BY B DESC, C ASC', '시트1', 'my_callback');
+    query('SELECT * WHERE B > 0 ORDER BY B DESC', '시트1', 'my_callback');
 }
-
-       </script>
-    </head>
     
-    <body id ="body">
-        <p>DR 온라인 기록증</p>
-        <input type="button" value="Lading record" onclick="javascript_onclikc()">
-        <div id="showData"></div>
-    </body>
+</script>
+
+<style>
+    body {
+        background-color: #0D0D0D;
+    }
+    table{
+        margin:100px 100px;
+    
+        text-align:center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: auto;
+    }
+    div{
+        text-align:center;
+    }
+</style>
+</head>
+<body id ="body">
+
+    <table id="top_table" width=30%>
+        <tr>
+            <td>
+                <svg id="e3x2m6w0gh91" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 174.620000 196.330000" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><style><![CDATA[#e3x2m6w0gh94 {animation: e3x2m6w0gh94_c_o 2000ms linear 1 normal forwards}@keyframes e3x2m6w0gh94_c_o { 0% {opacity: 0} 40% {opacity: 0} 90% {opacity: 1} 100% {opacity: 1} }#e3x2m6w0gh919_tr {animation: e3x2m6w0gh919_tr__tr 2000ms linear 1 normal forwards}@keyframes e3x2m6w0gh919_tr__tr { 0% {transform: translate(88.415005px,84.920002px) rotate(150deg)} 15% {transform: translate(88.415005px,84.920002px) rotate(150deg);animation-timing-function: cubic-bezier(1,0,0,1)} 60% {transform: translate(88.415005px,84.920002px) rotate(0deg)} 100% {transform: translate(88.415005px,84.920002px) rotate(0deg)} }#e3x2m6w0gh919_ts {animation: e3x2m6w0gh919_ts__ts 2000ms linear 1 normal forwards}@keyframes e3x2m6w0gh919_ts__ts { 0% {transform: scale(0,0)} 20% {transform: scale(0,0);animation-timing-function: cubic-bezier(1,0,0,1)} 65% {transform: scale(1,1)} 100% {transform: scale(1,1)} }#e3x2m6w0gh922_ts {animation: e3x2m6w0gh922_ts__ts 2000ms linear 1 normal forwards}@keyframes e3x2m6w0gh922_ts__ts { 0% {transform: translate(88.435000px,84.920000px) scale(0,1)} 10% {transform: translate(88.435000px,84.920000px) scale(0,1);animation-timing-function: cubic-bezier(0.860000,0,0.070000,1)} 60% {transform: translate(88.435000px,84.920000px) scale(1,1)} 100% {transform: translate(88.435000px,84.920000px) scale(1,1)} }]]></style><g id="e3x2m6w0gh92"><g id="e3x2m6w0gh93"><g id="e3x2m6w0gh94" opacity="0"><path id="e3x2m6w0gh95" d="M10.140000,178.570000L10.140000,190.470000L0,196.330000L0,178.570000ZM7.890000,180.820000L2.250000,180.820000L2.250000,192.410000L7.890000,189.160000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh96" d="M12.390000,178.570000L14.650000,178.570000L14.650000,185.330000L20.280000,185.330000L20.280000,178.570000L22.530000,178.570000L22.530000,187.570000L18.590000,187.570000L18.590000,194.330000L16.330000,194.330000L16.330000,187.570000L12.390000,187.570000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh97" d="M27,180.820000L27,194.340000L24.790000,194.340000L24.790000,178.570000L34.920000,178.570000L34.920000,194.340000L32.670000,194.340000L32.670000,180.820000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh98" d="M37.180000,178.570000L47.320000,178.570000L47.320000,194.340000L45.060000,194.340000L45.060000,187.580000L39.430000,187.580000L39.430000,194.340000L37.180000,194.340000ZM39.430000,180.820000L39.430000,185.330000L45.060000,185.330000L45.060000,180.820000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh99" d="M51.820000,180.820000L51.820000,194.340000L49.570000,194.340000L49.570000,178.570000L59.710000,178.570000L59.710000,194.340000L57.460000,194.340000L57.460000,180.820000L55.770000,180.820000L55.770000,194.340000L53.510000,194.340000L53.510000,180.820000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh910" d="M62,194.340000L62,192.090000L65.950000,192.090000L65.950000,180.820000L62,180.820000L62,178.570000L72.100000,178.570000L72.100000,180.820000L68.160000,180.820000L68.160000,192.090000L72.100000,192.090000L72.100000,194.340000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh911" d="M84.500000,178.570000L84.500000,180.820000L76.610000,180.820000L76.610000,192.090000L84.500000,192.090000L84.500000,194.340000L74.360000,194.340000L74.360000,178.570000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh912" d="M100.270000,178.570000L100.270000,184.830000L96.160000,187.210000L100.270000,194.340000L97.650000,194.340000L94.200000,188.340000L92.380000,189.340000L92.380000,194.340000L90.130000,194.340000L90.130000,178.570000ZM98,180.820000L92.380000,180.820000L92.380000,186.820000L98,183.530000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh913" d="M102.520000,178.570000L104.770000,178.570000L104.770000,192.090000L110.410000,192.090000L110.410000,178.570000L112.660000,178.570000L112.660000,194.340000L102.520000,194.340000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh914" d="M117.170000,180.820000L117.170000,194.340000L114.910000,194.340000L114.910000,178.570000L125.050000,178.570000L125.050000,194.340000L122.800000,194.340000L122.800000,180.820000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh915" d="M129.560000,180.820000L129.560000,194.340000L127.310000,194.340000L127.310000,178.570000L137.450000,178.570000L137.450000,194.340000L135.190000,194.340000L135.190000,180.820000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh916" d="M149.840000,178.570000L149.840000,180.820000L142,180.820000L142,185.330000L147.630000,185.330000L147.630000,187.580000L142,187.580000L142,192.090000L149.890000,192.090000L149.890000,194.340000L139.700000,194.340000L139.700000,178.570000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh917" d="M162.230000,178.570000L162.230000,184.830000L158.120000,187.210000L162.230000,194.340000L159.620000,194.340000L156.160000,188.340000L154.340000,189.340000L154.340000,194.340000L152.090000,194.340000L152.090000,178.570000ZM160,180.820000L154.360000,180.820000L154.360000,186.820000L160,183.580000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh918" d="M174.620000,178.570000L174.620000,180.820000L166.740000,180.820000L166.740000,183.530000L174.620000,188.080000L174.620000,194.340000L164.480000,194.340000L164.480000,192.090000L172.370000,192.090000L172.370000,189.390000L164.480000,184.830000L164.480000,178.570000Z" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/></g><g id="e3x2m6w0gh919_tr" transform="translate(88.415005,84.920002) rotate(150)"><g id="e3x2m6w0gh919_ts" transform="scale(0,0)"><g id="e3x2m6w0gh919" transform="translate(-88.415005,0.005001)"><path id="e3x2m6w0gh920" d="M90,23.504997L90,145.074997L90.160000,144.974997L90.580000,144.254997L90.580000,144.734997L97.040000,141.004997L97.040000,141.004997L104.650000,136.614997L104.900000,136.464997L104.900000,102.294997L111.800000,98.364997L128.550000,122.864997L141.350000,115.474997L141.350000,115.184997L124.710000,90.864997L141.320000,81.274997L141.320000,53.134997ZM126.140000,72.834997L104.900000,85.094997L104.900000,49.094997L126.140000,61.364997Z" transform="matrix(1 0 0 1 0.56000000000007 -84.48750152499989)" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="e3x2m6w0gh921" d="M85.670000,145.460000L85.670000,24.140000L34.360000,53.770000L34.360000,116.080000ZM48.920000,62.330000L70.770000,49.710000L70.770000,119.650000L48.920000,107Z" transform="matrix(1 0 0 1 0.56000000000007 -84.48750152499989)" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/></g></g></g><g id="e3x2m6w0gh922_ts" transform="translate(88.435000,84.920000) scale(0,1)"><polygon id="e3x2m6w0gh922" points="21.890000,46.500000 88.440000,8.080000 154.980000,46.500000 154.980000,123.340000 88.440000,161.760000 21.890000,123.340000 21.890000,46.500000" transform="translate(-88.435000,-84.920000)" fill="none" stroke="rgb(255,255,255)" stroke-width="14" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="0"/></g></g></g></svg>      
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <br>
+                <br>
+                <img src="button.svg" id = "dr_btn" alt="" type="button" onclick="javascript_onclikc()">
+            </td>
+        </tr>
+    </table>
+    <div id="showData" ></div>
+</body>
 </html>
