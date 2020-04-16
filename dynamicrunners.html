@@ -5,6 +5,7 @@
     <meta property="og:url" content="https://huiyueun.github.io/dynamicrunners.html"/>
     <meta property="og:image" content="dy_certificate_bg.jpg"/>
     <meta property="og:description" content="Online ceritifiace"/>
+    
 <script>
 var jsonp = function (url) {
     var script = window.document.createElement('script');
@@ -142,29 +143,25 @@ var my_callback = function (data) {
     for (var i = 0; i < data.length; i++) {
         CreateCanvas(i, data[i][col[0]],data[i][col[1]],data[i][col[2]]);
     }
-    
-    var finish1 = document.getElementById("dr_btn1");
-    finish1.src = "button_after.svg";
-    var finish2 = document.getElementById("dr_btn2");
-    finish2.src = "button_after.svg";
-    var finish3 = document.getElementById("dr_btn3");
-    finish3.src = "button_after.svg";
-    
-    finish1.src = "";
-    finish3.src = "";
 }
-   
+
+function animateFinish()
+{
+    var finish1 = document.getElementById("circle1");
+    var finish2 = document.getElementById("circle2");
+    var finish3 = document.getElementById("circle3");
+    finish1.style.opacity = 0;
+    finish2.style.opacity = 0;
+    finish3.style.opacity = 0;
+}
 var datas = [];
 
-//자바스크립트 onclick
-//document.getElementById("dr_btn").addEventListener("click", javascript_onclikc);
-//function javascript_onclikc(){
-//}
 function loaded(){
 setTimeout(() => 
 {
     console.log("Loading Start!");
     query('SELECT * WHERE B > 0 ORDER BY B DESC', '시트1', 'my_callback'); 
+    animateFinish();
 }, 2000);
 
 }
@@ -172,6 +169,23 @@ setTimeout(() =>
 </script>
 
 <style>
+    @keyframes example {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
+    }
+    @keyframes myfirst1
+    {
+    0%   {  transform:scale(0.3);background-color: white;}
+    50% {  transform:scale(1.5);background-color: #FE2E2E;}
+    100% {  transform:scale(0.3);background-color: white;}
+    }
+    @keyframes opacityAni
+    {
+    0%   {  opacity: 1;}
+    100% {  opacity: 0;}
+    }
     body {
         background-color: #0D0D0D;
     }
@@ -186,6 +200,56 @@ setTimeout(() =>
     div{
         text-align:center;
     }
+    .dr_btn1{
+        animation-name : myfirst1;
+        animation-duration: 2s;
+        animation-delay: 0.0s;
+        animation-iteration-count: infinite;
+    }
+    .dr_btn2{
+        animation-name : myfirst1;
+        animation-duration: 2s;
+        animation-delay: 0.2s;
+        animation-iteration-count: infinite;
+    }
+    .dr_btn3{
+        animation-name : myfirst1;
+        animation-duration: 2s;
+        animation-delay: 0.4s;
+        animation-iteration-count: infinite;
+    }
+    #dr_btn_opacity{
+        animation-name : opacityAni;
+        animation-duration: 2s;
+        animation-iteration-count: 1;
+    }
+    #circle1{
+    margin:20px;
+      width: 20px;
+      height: 20px;
+      -webkit-border-radius: 40px;
+      -moz-border-radius: 40px;
+      border-radius: 100px;
+      background: white;
+    }
+    #circle2{
+    margin:20px;
+      width: 20px;
+      height: 20px;
+      -webkit-border-radius: 40px;
+      -moz-border-radius: 40px;
+      border-radius: 100px;
+      background: white;
+    }
+    #circle3{
+    margin:20px;
+      width: 20px;
+      height: 20px;
+      -webkit-border-radius: 40px;
+      -moz-border-radius: 40px;
+      border-radius: 100px;
+      background: white;
+    }
 </style>
 </head>
 <body id ="body" onload ="loaded();">
@@ -199,14 +263,15 @@ setTimeout(() =>
         <tr>
             <td>
                 <br>
-                <br>
-                <br>
-                <img src="button.svg" id = "dr_btn1" alt="" type="button">
-                <img src="button.svg" id = "dr_btn2" alt="" type="button">
-                <img src="button.svg" id = "dr_btn3" alt="" type="button">
+
+                <object id="circle1" class="dr_btn1"></object>
+                <object id="circle2" class="dr_btn2"></object>
+                <object id="circle3" class="dr_btn3"></object>
+
             </td>
         </tr>
     </table>
+    
     <div id="showData" ></div>
 </body>
 </html>
