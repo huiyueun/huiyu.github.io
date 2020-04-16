@@ -5,7 +5,7 @@
     <meta property="og:url" content="https://huiyueun.github.io/dynamicrunners.html"/>
     <meta property="og:image" content="dy_certificate_bg.jpg"/>
     <meta property="og:description" content="Online ceritifiace"/>
-    
+
 <script>
 var jsonp = function (url) {
     var script = window.document.createElement('script');
@@ -64,7 +64,6 @@ var parse = function (data) {
 };
     
 var query = function (sql, sheetName, callback) {
-    //var myKey = '1R-8M7lQjmAWr7Lliku57e9FU-Kjcofu2mNiLU3pkmFs';
     var myKey = '1zrQ9ngFnY4LpkAkixyzIsX0-broVIIETbyUCEqiVZ0A';
     var url = 'https://docs.google.com/spreadsheets/d/'+myKey+'/gviz/tq?',
         params = {
@@ -81,16 +80,15 @@ var query = function (sql, sheetName, callback) {
 }
     
 function CreateCanvas( i, name, course, record) {
-    var canvasName = "#myCanvas";
-    var is = String(i);
-    var _cvs = document.createElement('canvas');//document.querySelector(canvasName.concat(is));
+    var _cvs = document.createElement('canvas');
     _cvs.width = 720;
     _cvs.height = 720;
 
     var _ctx = _cvs.getContext("2d");
     var _img = new Image();
-    _img.src = "https://huiyueun.github.io/dy_certificate_bg.jpg";
-    _img.crossOrigin="*";
+        _img.src = "https://huiyueun.github.io/dy_certificate_bg.jpg";
+        _img.crossOrigin="*";
+
         _img.onload = function(e) {
         _ctx.drawImage(_img, 0, 0);
         _ctx.fillStyle = "white";
@@ -99,29 +97,17 @@ function CreateCanvas( i, name, course, record) {
         _ctx.fillText(course+"K", 370,485);
         _ctx.fillText(record, 370,570);
 
-        var divContainer = document.getElementById("showData");
-
-        var btn = document.createElement('Button');
-        btn.addEventListener('click', function (e) {
-            var dataURL = _cvs.toDataURL('image/png');
-            btn.href = dataURL;
-        });
-        //divContainer.appendChild(btn);
-
         var myImage = document.createElement('img');
         myImage.crossOrigin="*";
         myImage.width=720;
         myImage.height=720;
         myImage.src = _cvs.toDataURL('image/jpg');
-      //  myImage.crossOrigin = "Anonymous";
         divContainer.appendChild(myImage);
     }
 }
     
 var my_callback = function (data) {
     data = parse(data); // Call data parser helper function
-    
-
     //AND THEN WHATEVER YOU WANT 
     for(var i = 0 ; i < datas.length; i++){
         if(JSON.stringify(datas[i]) == JSON.stringify(data)) {
@@ -154,13 +140,16 @@ function animateFinish()
     finish2.style.opacity = 0;
     finish3.style.opacity = 0;
 }
+
+var divContainer;
 var datas = [];
 
 function loaded(){
 setTimeout(() => 
 {
     console.log("Loading Start!");
-    query('SELECT * WHERE B > 0 ORDER BY C DESC', '시트1', 'my_callback'); 
+    divContainer = document.getElementById("showData");
+    query('SELECT * WHERE B > 0 ORDER BY A DESC', '시트1', 'my_callback'); 
     animateFinish();
 }, 2000);
 
@@ -169,60 +158,62 @@ setTimeout(() =>
 </script>
 
 <style>
-    @keyframes example {
-    0%   {background-color: red;}
-    25%  {background-color: yellow;}
-    50%  {background-color: blue;}
-    100% {background-color: green;}
-    }
     @keyframes myfirst1
     {
     0%   {  transform:scale(0.3);background-color: white;}
     50% {  transform:scale(1.5);background-color: #FE2E2E;}
     100% {  transform:scale(0.3);background-color: white;}
     }
+
     @keyframes opacityAni
     {
     0%   {  opacity: 1;}
     100% {  opacity: 0;}
     }
+
     body {
         background-color: #0D0D0D;
     }
+
     table{
         margin:100px 100px;
-    
         text-align:center;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: auto;
     }
+
     div{
         text-align:center;
     }
+
     .dr_btn1{
         animation-name : myfirst1;
         animation-duration: 2s;
         animation-delay: 0.0s;
         animation-iteration-count: infinite;
     }
+
     .dr_btn2{
         animation-name : myfirst1;
         animation-duration: 2s;
         animation-delay: 0.2s;
         animation-iteration-count: infinite;
     }
+
     .dr_btn3{
         animation-name : myfirst1;
         animation-duration: 2s;
         animation-delay: 0.4s;
         animation-iteration-count: infinite;
     }
+    
     #dr_btn_opacity{
         animation-name : opacityAni;
         animation-duration: 2s;
         animation-iteration-count: 1;
     }
+
     #circle1{
     margin:20px;
       width: 20px;
@@ -232,6 +223,7 @@ setTimeout(() =>
       border-radius: 100px;
       background: white;
     }
+
     #circle2{
     margin:20px;
       width: 20px;
@@ -241,6 +233,7 @@ setTimeout(() =>
       border-radius: 100px;
       background: white;
     }
+
     #circle3{
     margin:20px;
       width: 20px;
@@ -253,7 +246,6 @@ setTimeout(() =>
 </style>
 </head>
 <body id ="body" onload ="loaded();">
-
     <table id="top_table" width=30%>
         <tr>
             <td>
@@ -271,7 +263,6 @@ setTimeout(() =>
             </td>
         </tr>
     </table>
-    
     <div id="showData" ></div>
 </body>
 </html>
