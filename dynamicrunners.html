@@ -136,15 +136,48 @@ function animateFinish()
     var finish1 = document.getElementById("circle1");
     var finish2 = document.getElementById("circle2");
     var finish3 = document.getElementById("circle3");
-    finish1.style.opacity = 0;
-    finish2.style.opacity = 0;
-    finish3.style.opacity = 0;
+    finish1.remove();
+    finish2.remove();
+    finish3.remove();
+    var table = document.getElementById("top_table");
+    //table.className="dr_table";
+    var id = setInterval(frame, 5);
+
+    var start = scaleSize;
+    var end = start - endScaleSize;
+    function frame() {
+        if (start < end) {
+            clearInterval(id);
+        } else {
+            table.style.width = start+"%";
+        }
+        start-=1;
+    }
 }
 
 var divContainer;
 var datas = [];
+var scaleSize;
+var endScaleSize;
 
 function loaded(){
+    
+
+if(window.innerWidth<window.innerHeight)
+{
+    var table = document.getElementById("top_table");
+    scaleSize = "80"
+    endScaleSize = "40"
+    table.style.width = scaleSize + "%";
+}
+else
+{
+    var table = document.getElementById("top_table");
+    scaleSize = "36"
+    endScaleSize = "10"
+    table.style.width = scaleSize + "%";
+}
+
 setTimeout(() => 
 {
     console.log("Loading Start!");
@@ -158,6 +191,13 @@ setTimeout(() =>
 </script>
 
 <style>
+    @keyframes table_scale
+    {
+    0%   {  transform:scale(1.0);}
+    100% {  transform:scale(0.6)}
+    }
+
+
     @keyframes myfirst1
     {
     0%   {  transform:scale(0.3);background-color: white;}
@@ -176,7 +216,7 @@ setTimeout(() =>
     }
 
     table{
-        margin:100px 100px;
+        margin:60px 60px;
         text-align:center;
         margin-left: auto;
         margin-right: auto;
@@ -185,6 +225,12 @@ setTimeout(() =>
 
     div{
         text-align:center;
+    }
+    .dr_table{
+        animation-name : table_scale;
+        animation-duration: 2s;
+        animation-delay: 0.0s;
+        animation-iteration-count: 1;
     }
 
     .dr_btn1{
@@ -246,7 +292,7 @@ setTimeout(() =>
 </style>
 </head>
 <body id ="body" onload ="loaded();">
-    <table id="top_table" width=30%>
+    <table id="top_table" width=40%>
         <tr>
             <td>
                 <img src="dynamic_logo.svg" id = "dr_logo" alt="">
