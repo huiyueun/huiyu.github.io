@@ -79,7 +79,7 @@ var query = function (sql, sheetName, callback) {
     return jsonp(url); // Call JSONP helper function
 }
     
-function CreateCanvas(i, name, course, record) {
+function CreateCanvas(tabCell, i, name, course, record) {
     var _cvs = document.createElement('canvas');
     _cvs.width = 720;
     _cvs.height = 720;
@@ -132,7 +132,6 @@ var my_callback = function (data) {
         }
     }
 
-    /*
     var table = document.querySelector("#showData table");
     if (table === null || table == undefined) {
         // CREATE DYNAMIC TABLE.
@@ -164,10 +163,11 @@ var my_callback = function (data) {
         divContainer.innerHTML = "";
         divContainer.appendChild(table);
     }
-    */
+    /*
     for (var i = 0; i < data.length; i++) {
         CreateCanvas(i, data[i][col[0]],data[i][col[1]],data[i][col[2]]);
     }
+    */
 }
 
 function animateFinish()
@@ -221,7 +221,7 @@ setTimeout(() =>
 {
     console.log("Loading Start!");
     divContainer = document.getElementById("showData");
-    query('SELECT * WHERE B > 0 ORDER BY C ASC', '시트1', 'my_callback'); 
+    query('SELECT * WHERE B > 0 ORDER BY C, A ASC', '시트1', 'my_callback'); 
     animateFinish();
 }, 2000);
 
