@@ -79,7 +79,7 @@ var query = function (sql, sheetName, callback) {
     return jsonp(url); // Call JSONP helper function
 }
     
-function CreateCanvas(tabCell, i, name, course, record) {
+function CreateCanvas(i, name, course, record) {
     var _cvs = document.createElement('canvas');
     _cvs.width = 720;
     _cvs.height = 720;
@@ -221,7 +221,7 @@ setTimeout(() =>
 {
     console.log("Loading Start!");
     divContainer = document.getElementById("showData");
-    query('SELECT * WHERE B > 0 ORDER BY C,A ASC', '시트1', 'my_callback'); 
+    query('SELECT * WHERE B > 0 ORDER BY C ASC', '시트1', 'my_callback'); 
     animateFinish();
 }, 2000);
 
