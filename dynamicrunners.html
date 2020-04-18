@@ -106,8 +106,8 @@ function CreateCanvas(tabCell, i, name, course, record) {
         pDiv.appendChild(myImage);
         pDiv.width = 730;
         pDiv.height=730;
-        //divContainer.appendChild(pDiv);
-        tabCell.appendChild(pDiv);
+        divContainer.appendChild(pDiv);
+        //tabCell.appendChild(pDiv);
     }
 }
     
@@ -132,6 +132,7 @@ var my_callback = function (data) {
         }
     }
 
+    /*
     var table = document.querySelector("#showData table");
     if (table === null || table == undefined) {
         // CREATE DYNAMIC TABLE.
@@ -163,11 +164,10 @@ var my_callback = function (data) {
         divContainer.innerHTML = "";
         divContainer.appendChild(table);
     }
-    /*
+    */
     for (var i = 0; i < data.length; i++) {
         CreateCanvas(i, data[i][col[0]],data[i][col[1]],data[i][col[2]]);
     }
-    */
 }
 
 function animateFinish()
@@ -255,7 +255,6 @@ setTimeout(() =>
     }
 
     table{
-        margin:60px 60px;
         text-align:center;
         margin-left: auto;
         margin-right: auto;
