@@ -3,7 +3,7 @@
 <head>
     <meta property="og:title" content="Dynamic Runners 1st Marathon"/>
     <meta property="og:url" content="https://huiyueun.github.io/dynamicrunners.html"/>
-    <meta property="og:image" content="dy_certificate_bg.jpg"/>
+    <meta property="og:image" content="dynamic.jpg"/>
     <meta property="og:description" content="Online ceritifiace"/>
 
 <script>
@@ -102,7 +102,11 @@ function CreateCanvas( i, name, course, record) {
         myImage.width=720;
         myImage.height=720;
         myImage.src = _cvs.toDataURL('image/jpg');
-        divContainer.appendChild(myImage);
+        var pDiv = document.createElement('div');
+        pDiv.appendChild(myImage);
+        pDiv.width = 730;
+        pDiv.height=730;
+        divContainer.appendChild(pDiv);
     }
 }
     
@@ -174,7 +178,7 @@ else
 {
     var table = document.getElementById("top_table");
     scaleSize = "36"
-    endScaleSize = "10"
+    endScaleSize = "20"
     table.style.width = scaleSize + "%";
 }
 
