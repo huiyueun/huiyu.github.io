@@ -106,8 +106,8 @@ function CreateCanvas(tabCell, i, name, course, record) {
         pDiv.appendChild(myImage);
         pDiv.width = 730;
         pDiv.height=730;
-        divContainer.appendChild(pDiv);
-        //tabCell.appendChild(pDiv);
+        //divContainer.appendChild(pDiv);
+        tabCell.appendChild(pDiv);
     }
 }
     
@@ -131,7 +131,6 @@ var my_callback = function (data) {
             }
         }
     }
-
     var table = document.querySelector("#showData table");
     if (table === null || table == undefined) {
         // CREATE DYNAMIC TABLE.
