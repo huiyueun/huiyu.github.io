@@ -135,31 +135,22 @@ var my_callback = function (data) {
     if (table === null || table == undefined) {
         // CREATE DYNAMIC TABLE.
         table = document.createElement("table");
-
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-        var tr = table.insertRow(-1); // TABLE ROW.
-
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th"); // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-
         // ADD JSON DATA TO THE TABLE AS ROWS.
         for (var i = 0; i < data.length; i++) {
             tr = table.insertRow(-1);
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = data[i][col[j]];
+                //tabCell.innerHTML = data[i][col[j]];
             }
             
-            var tabCell = tr.insertCell(-1);
+            //var tabCell = tr.insertCell(-1);
             CreateCanvas(tabCell, i, data[i][col[0]],data[i][col[1]],data[i][col[2]]);
             //tabCell.appendChild();
         }
 
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
         divContainer.innerHTML = "";
+        table.className = "created_table";
         divContainer.appendChild(table);
     }
     /*
@@ -253,7 +244,12 @@ setTimeout(() =>
         background-color: #0D0D0D;
     }
 
-    table{
+    .created_table{
+        text-align:center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .my_table{
         text-align:center;
         margin-left: auto;
         margin-right: auto;
@@ -329,7 +325,7 @@ setTimeout(() =>
 </style>
 </head>
 <body id ="body" onload ="loaded();">
-    <table id="top_table" width=40%>
+    <table id="top_table" width=40% class='my_table'>
         <tr>
             <td>
                 <img src="dynamic_logo.svg" id = "dr_logo" alt="">
