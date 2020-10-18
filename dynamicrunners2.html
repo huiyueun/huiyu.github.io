@@ -62,10 +62,11 @@ var parse = function (data) {
     }
     return result;
 };
-    
+
 var query = function (sql, sheetName, callback) {
-    var myKey = '1zrQ9ngFnY4LpkAkixyzIsX0-broVIIETbyUCEqiVZ0A';
-    var url = 'https://docs.google.com/spreadsheets/d/'+myKey+'/gviz/tq?',
+    console.log("Query - dy2");
+    var myKey = '1ClJF_qOccFxvfY6zFfNIvsf2uQTfGqajwECRNmMBwLs';
+    var url = 'https://docs.google.com/spreadsheets/d/' + myKey + '/gviz/tq?',
         params = {
             tq: encodeURIComponent(sql),
             sheet: encodeURIComponent(sheetName),
@@ -81,8 +82,8 @@ var query = function (sql, sheetName, callback) {
     
 function CreateCanvas(tabCell, i, name, course, record) {
     var _cvs = document.createElement('canvas');
-    _cvs.width = 720;
-    _cvs.height = 720;
+    _cvs.width = 800;
+    _cvs.height = 800;
 
     var _ctx = _cvs.getContext("2d");
     var _img = new Image();
@@ -93,9 +94,9 @@ function CreateCanvas(tabCell, i, name, course, record) {
         _ctx.drawImage(_img, 0, 0);
         _ctx.fillStyle = "white";
         _ctx.font = "40pt HY견고딕"
-        _ctx.fillText(name, 370,390);
-        _ctx.fillText(course+"K", 370,485);
-        _ctx.fillText(record, 370,570);
+        _ctx.fillText(name, 110, 530);
+        //_ctx.fillText(course+"K", 370,485);
+        _ctx.fillText(record, 420, 530);
 
         var myImage = document.createElement('img');
         myImage.crossOrigin="*";
